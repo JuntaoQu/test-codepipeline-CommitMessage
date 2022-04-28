@@ -13,8 +13,8 @@ phases:
       - echo Testing the env var now...
       - echo Github Version 1 again
       - echo $test
-      - echo $Execution_ID
-      - echo $Commit_ID
+      - echo $CommitID
+      - echo $RepositoryName
       - echo $CommitMessage
   # post_build:
   #   commands:
