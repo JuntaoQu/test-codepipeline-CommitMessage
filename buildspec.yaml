@@ -8,7 +8,7 @@ phases:
     commands:
       - jq
       - echo $CODEBUILD_INITIATOR
-      - PipelineName=$(CODEBUILD_INITIATOR#*/)
+      - PipelineName=${CODEBUILD_INITIATOR#*/}
       - echo $PipelineName
       # This is for Github Version 2
       # - aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.CommitMessage'
