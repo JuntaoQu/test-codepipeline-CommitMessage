@@ -15,7 +15,7 @@ phases:
       # - CommitMessage2=$(aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.CommitMessage')
       # For version 1
       - aws codepipeline list-pipeline-executions --pipeline-name $PipelineName --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.revisionSummary'
-      - CommitMessage2=$(aws codepipeline list-pipeline-executions --pipeline-name $PipelineName --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.revisionSummary')
+      - CommitMessage2=$(echo aws codepipeline list-pipeline-executions --pipeline-name $PipelineName --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.revisionSummary')
       - export CommitMessage2
       - echo Testing the env var now...
       - echo Github Version 1 again
