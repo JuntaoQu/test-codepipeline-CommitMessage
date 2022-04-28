@@ -11,6 +11,7 @@ phases:
       # - CommitMessage=$(aws codepipeline list-pipeline-executions  --pipeline-name test-environment-variables --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.CommitMessage') 
       # - export CommitMessage
       - echo Testing the env var now...
+      - echo Github Version 1
       - echo $test
       - echo $Execution_ID
       - echo $Commit_ID
