@@ -6,16 +6,16 @@ phases:
       - apt-get install jq
   build:
     commands:
-      - jq
+      - jq --version
       - echo $CODEBUILD_INITIATOR
       - PipelineName=${CODEBUILD_INITIATOR#*/}
       - echo $PipelineName
       # This is for Github Version 2
       # - aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.CommitMessage'
-      # - CommitMessage2=$(aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.CommitMessage')
+      # - CommitMessage2=$(aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.CommitMessage')
       # For version 1
-      - aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.revisionSummary'
-      - CommitMessage2=$(aws codepipeline list-pipeline-executions --pipeline-name test-environment-variables-uw2 --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.revisionSummary')
+      - aws codepipeline list-pipeline-executions --pipeline-name $PipelineName --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.revisionSummary'
+      - CommitMessage2=$(aws codepipeline list-pipeline-executions --pipeline-name $PipelineName --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.revisionSummary')
       - export CommitMessage2
       - echo Testing the env var now...
       - echo Github Version 1 again
