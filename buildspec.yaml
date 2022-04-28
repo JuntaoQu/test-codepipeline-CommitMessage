@@ -6,10 +6,10 @@ phases:
   #     - apt-get install jq
   build:
     commands:
-       - jq
-       - aws codepipeline list-pipeline-executions  --pipeline-name test-environment-variables --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.CommitMessage'
-       - CommitMessage2=$(aws codepipeline list-pipeline-executions  --pipeline-name test-environment-variables --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.CommitMessage') 
-       - export CommitMessage2
+      - jq
+      - aws codepipeline list-pipeline-executions  --pipeline-name test-environment-variables --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0]' | jq '.CommitMessage'
+      - CommitMessage2=$(aws codepipeline list-pipeline-executions  --pipeline-name test-environment-variables --max-items 1 | jq -r '.pipelineExecutionSummaries[0].sourceRevisions[0].revisionSummary' | jq '.CommitMessage') 
+      - export CommitMessage2
       - echo Testing the env var now...
       - echo Github Version 1 again
       - echo $test
